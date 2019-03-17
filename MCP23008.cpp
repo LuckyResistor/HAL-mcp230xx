@@ -169,6 +169,12 @@ MCP23008::Status MCP23008::setOutputsLow(const PinMask pinMask)
     return writeRegister(Register::OLAT, pinMask, false);
 }
 
+    
+MCP23008::Status MCP23008::setAllOutputs(const PinMask pinMask)
+{
+    return writeRegister(Register::OLAT, Pin::GP_All, static_cast<uint8_t>(pinMask));
+}
+
 
 MCP23008::Status MCP23008::flipOutputs(const PinMask pinMask)
 {

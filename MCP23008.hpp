@@ -178,7 +178,7 @@ public:
     ///
     /// @param[in] pinMask The combination of pins.
     /// @param[in] direction The direction to set for the given pins.
-    /// @return `Success` if the direction was set successfully.
+    /// @return `Success` if the operation was successful.
     ///
     Status setDirections(const PinMask pinMask, const Direction direction);
 
@@ -188,7 +188,7 @@ public:
     /// and all other pins as outputs.
     ///
     /// @param[in] pinMask The pins to set as inputs.
-    /// @return `Success` if the polarity was set successfully.
+    /// @return `Success` if the operation was successful.
     ///
     Status setInputDirections(const PinMask pinMask);
 
@@ -196,7 +196,7 @@ public:
     ///
     /// @param[in] pinMask The combination of pins.
     /// @param[in] inputPolarity The input polarity for the given pins.
-    /// @return `Success` if the polarity was set successfully.
+    /// @return `Success` if the operation was successful.
     ///
     Status setInputPolarities(const PinMask pinMask, const InputPolarity inputPolarity);
 
@@ -206,7 +206,7 @@ public:
     /// pins in the mask normal polarity for all others.
     ///
     /// @param[in] pinMask The pins to set for reverse input polarity.
-    /// @return `Success` if the polarity was set successfully.
+    /// @return `Success` if the operation was successful.
     ///
     Status setAllInputPolarities(const PinMask pinMask);
 
@@ -216,7 +216,7 @@ public:
     ///
     /// @param[in] pinMask The combination of pins.
     /// @param[in] pullUp If the pull-ups shall be enabled.
-    /// @return `Success` if the polarity was set successfully.
+    /// @return `Success` if the operation was successful.
     ///
     Status setPullUps(const PinMask pinMask, const PullUp pullUp);
 
@@ -226,14 +226,14 @@ public:
     /// pins in the mask and disable it for all others.
     ///
     /// @param[in] pinMask The pins to enable the pull-up resistors.
-    /// @return `Success` if the polarity was set successfully.
+    /// @return `Success` if the operation was successful.
     ///
     Status setAllPullUps(const PinMask pinMask);
 
-    /// Read the inputs from both ports.
+    /// Read all inputs.
     ///
-    /// @param[out] pinMask The pin mask read from the registers.
-    /// @return `Success` if the polarity was set successfully.
+    /// @param[out] pinMask The pin mask to read the input into.
+    /// @return `Success` if the operation was successful.
     ///
     Status getInputs(PinMask &pinMask);
 
@@ -241,28 +241,35 @@ public:
     ///
     /// @param[in] pinMask The combination of pins.
     /// @param[in] output The state to set for the selected pins.
-    /// @return `Success` if the polarity was set successfully.
+    /// @return `Success` if the operation was successful.
     ///
     Status setOutputs(const PinMask pinMask, const Output output);
 
     /// Set outputs into high state.
     ///
     /// @param[in] pinMask The pins to set into the high state.
-    /// @return `Success` if the polarity was set successfully.
+    /// @return `Success` if the operation was successful.
     ///
     Status setOutputsHigh(const PinMask pinMask);
 
     /// Set outputs into low state.
     ///
     /// @param[in] pinMask The pins to set into the low state.
-    /// @return `Success` if the polarity was set successfully.
+    /// @return `Success` if the operation was successful.
     ///
     Status setOutputsLow(const PinMask pinMask);
-
+    
+    /// Set all outputs at once as fast as possible.
+    ///
+    /// @param[in] pinMask The pin states to set.
+    /// @return `Success` if the operation was successful.
+    ///
+    Status setAllOutputs(const PinMask pinMask);
+    
     /// Flip the state of the selected outputs.
     ///
     /// @param[in] pinMask The pins to flip the state.
-    /// @return `Success` if the polarity was set successfully.
+    /// @return `Success` if the outputs were flipped successfully.
     ///
     Status flipOutputs(const PinMask pinMask);
 
