@@ -20,9 +20,9 @@
 #include "MCP23008.hpp"
 
 
-#include "../hal-common/GPIO.hpp"
-#include "../hal-common/StatusTools.hpp"
-#include "../hal-common/Timer.hpp"
+#include "hal-common/GPIO.hpp"
+#include "hal-common/StatusTools.hpp"
+#include "hal-common/Timer.hpp"
 
 
 namespace lr {

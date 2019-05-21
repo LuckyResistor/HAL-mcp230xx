@@ -20,10 +20,10 @@
 //
 
 
-#include "../hal-common/Flags.hpp"
-#include "../hal-common/GPIO.hpp"
-#include "../hal-common/StatusTools.hpp"
-#include "../hal-common/WireMasterChipRegister.hpp"
+#include "hal-common/Flags.hpp"
+#include "hal-common/GPIO.hpp"
+#include "hal-common/StatusTools.hpp"
+#include "hal-common/WireMasterChipRegister.hpp"
 
 #include <cstdint>
 
