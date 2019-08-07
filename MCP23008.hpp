@@ -20,6 +20,7 @@
 //
 
 
+#include "hal-common/BitTools.hpp"
 #include "hal-common/Flags.hpp"
 #include "hal-common/GPIO.hpp"
 #include "hal-common/StatusTools.hpp"
@@ -63,25 +64,25 @@ public:
     /// The configuration flags.
     ///
     enum class Configuration : uint8_t {
-        INTPOL = (1u<<1), ///< The interrupt polarity (1=active-high).
-        ODR = (1u<<2), ///< Interrupt is open-drain (1=open-drain).
-        HAEN = (1u<<3), ///< Hardware address enable (1=enable).
-        DISSLW = (1u<<4), ///< Slew rate control bit for SDA output (1=disable).
-        SEQOP = (1u<<5), ///< Sequential operation mode bit (1=disable).
+        INTPOL = oneBit8(1), ///< The interrupt polarity (1=active-high).
+        ODR = oneBit8(2), ///< Interrupt is open-drain (1=open-drain).
+        HAEN = oneBit8(3), ///< Hardware address enable (1=enable).
+        DISSLW = oneBit8(4), ///< Slew rate control bit for SDA output (1=disable).
+        SEQOP = oneBit8(5), ///< Sequential operation mode bit (1=disable).
     };
     LR_DECLARE_FLAGS(Configuration, ConfigurationMask);
 
     /// The pin.
     ///
     enum Pin : uint8_t {
-        GPA0 = (1u<<0), ///< Pin 0
-        GPA1 = (1u<<1), ///< Pin 1
-        GPA2 = (1u<<2), ///< Pin 2
-        GPA3 = (1u<<3), ///< Pin 3
-        GPA4 = (1u<<4), ///< Pin 4
-        GPA5 = (1u<<5), ///< Pin 5
-        GPA6 = (1u<<6), ///< Pin 6
-        GPA7 = (1u<<7), ///< Pin 7
+        GPA0 = oneBit8(0), ///< Pin 0
+        GPA1 = oneBit8(1), ///< Pin 1
+        GPA2 = oneBit8(2), ///< Pin 2
+        GPA3 = oneBit8(3), ///< Pin 3
+        GPA4 = oneBit8(4), ///< Pin 4
+        GPA5 = oneBit8(5), ///< Pin 5
+        GPA6 = oneBit8(6), ///< Pin 6
+        GPA7 = oneBit8(7), ///< Pin 7
         GP_All = 0xff, ///< All pins
     };
     LR_DECLARE_FLAGS(Pin, PinMask);
@@ -180,7 +181,7 @@ public:
     /// @param[in] direction The direction to set for the given pins.
     /// @return `Success` if the operation was successful.
     ///
-    Status setDirections(const PinMask pinMask, const Direction direction);
+    Status setDirections(PinMask pinMask, Direction direction);
 
     /// Set the pin direction for all pins.
     ///
@@ -190,7 +191,7 @@ public:
     /// @param[in] pinMask The pins to set as inputs.
     /// @return `Success` if the operation was successful.
     ///
-    Status setInputDirections(const PinMask pinMask);
+    Status setInputDirections(PinMask pinMask);
 
     /// Set the input polarity.
     ///
@@ -198,7 +199,7 @@ public:
     /// @param[in] inputPolarity The input polarity for the given pins.
     /// @return `Success` if the operation was successful.
     ///
-    Status setInputPolarities(const PinMask pinMask, const InputPolarity inputPolarity);
+    Status setInputPolarities(PinMask pinMask, InputPolarity inputPolarity);
 
     /// Set the input polarity for all pins.
     ///
@@ -208,7 +209,7 @@ public:
     /// @param[in] pinMask The pins to set for reverse input polarity.
     /// @return `Success` if the operation was successful.
     ///
-    Status setAllInputPolarities(const PinMask pinMask);
+    Status setAllInputPolarities(PinMask pinMask);
 
     /// Enable/Disable pull-up resistors.
     ///
@@ -218,7 +219,7 @@ public:
     /// @param[in] pullUp If the pull-ups shall be enabled.
     /// @return `Success` if the operation was successful.
     ///
-    Status setPullUps(const PinMask pinMask, const PullUp pullUp);
+    Status setPullUps(PinMask pinMask, PullUp pullUp);
 
     /// Set the pull up state for all pins.
     ///
@@ -228,7 +229,7 @@ public:
     /// @param[in] pinMask The pins to enable the pull-up resistors.
     /// @return `Success` if the operation was successful.
     ///
-    Status setAllPullUps(const PinMask pinMask);
+    Status setAllPullUps(PinMask pinMask);
 
     /// Read all inputs.
     ///
@@ -243,35 +244,35 @@ public:
     /// @param[in] output The state to set for the selected pins.
     /// @return `Success` if the operation was successful.
     ///
-    Status setOutputs(const PinMask pinMask, const Output output);
+    Status setOutputs(PinMask pinMask, Output output);
 
     /// Set outputs into high state.
     ///
     /// @param[in] pinMask The pins to set into the high state.
     /// @return `Success` if the operation was successful.
     ///
-    Status setOutputsHigh(const PinMask pinMask);
+    Status setOutputsHigh(PinMask pinMask);
 
     /// Set outputs into low state.
     ///
     /// @param[in] pinMask The pins to set into the low state.
     /// @return `Success` if the operation was successful.
     ///
-    Status setOutputsLow(const PinMask pinMask);
+    Status setOutputsLow(PinMask pinMask);
     
     /// Set all outputs at once as fast as possible.
     ///
     /// @param[in] pinMask The pin states to set.
     /// @return `Success` if the operation was successful.
     ///
-    Status setAllOutputs(const PinMask pinMask);
+    Status setAllOutputs(PinMask pinMask);
     
     /// Flip the state of the selected outputs.
     ///
     /// @param[in] pinMask The pins to flip the state.
     /// @return `Success` if the outputs were flipped successfully.
     ///
-    Status flipOutputs(const PinMask pinMask);
+    Status flipOutputs(PinMask pinMask);
 
     /// Enable interrupt on change for the selected pins.
     ///
@@ -281,7 +282,7 @@ public:
     /// @param[in] pinMask The pins to enable interrupt on change.
     /// @return `Success` if the change was successful.
     ///
-    Status setInterruptOnChange(const PinMask pinMask);
+    Status setInterruptOnChange(PinMask pinMask);
 
     /// Set the default value register for comparision to generate an interrupt.
     ///
@@ -291,7 +292,7 @@ public:
     /// @param[in] pinMask The pins to set a high/one default value.
     /// @return `Success` if the change was successful.
     ///
-    Status setDefaultValueHigh(const PinMask pinMask);
+    Status setDefaultValueHigh(PinMask pinMask);
     
     /// Set pins to compare against the default value to generate an interrupt.
     ///
@@ -302,14 +303,14 @@ public:
     /// @param[in] pinMask The pins to set compared against the default value.
     /// @return `Success` if the change was successful.
     ///
-    Status setCompareWithDefaultValue(const PinMask pinMask);
+    Status setCompareWithDefaultValue(PinMask pinMask);
     
     /// Set the interrupt pin configuration.
     ///
     /// @param[in] intPinConfig The configuration for the interrupt pins.
     /// @return `Success` if the change was successful.
     ///
-    Status setIntPinConfiguration(const IntPinConfig intPinConfig);
+    Status setIntPinConfiguration(IntPinConfig intPinConfig);
 
     /// Get the current interrupt status for the pins.
     ///
@@ -362,21 +363,21 @@ public:
     ///
     /// This helper function slightly optimises writing the bits to the registers.
     ///
-    Status writeRegister(const Register reg, const PinMask pinMask, const bool enable);
+    Status writeRegister(Register reg, PinMask pinMask, bool enable);
 
     /// Write a register.
     ///
     /// This helper function slightly optimises writing the bits
     /// to the registers.
     ///
-    Status writeRegister(const Register reg, const PinMask pinMask, const uint8_t value);
+    Status writeRegister(Register reg, PinMask pinMask, uint8_t value);
 
     /// @}
 
 private:
     /// Convert the status from the WireMaster interface.
     ///
-    inline static Status statusFromWireMaster(const WireMaster::Status status);
+    inline static Status statusFromWireMaster(WireMaster::Status status);
 
 private:
     const WireMasterRegisterChip<Register> _bus; ///< The bus for the communication.

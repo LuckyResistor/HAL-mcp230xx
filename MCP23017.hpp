@@ -24,6 +24,7 @@
 #include "hal-common/GPIO.hpp"
 #include "hal-common/StatusTools.hpp"
 #include "hal-common/WireMasterChipRegister.hpp"
+#include "hal-common/BitTools.hpp"
 
 #include <cstdint>
 
@@ -67,35 +68,35 @@ public:
     /// The configuration flags.
     ///
     enum class Configuration : uint8_t {
-        INTPOL = (1u<<1), ///< The interrupt polarity (1=active-high).
-        ODR = (1u<<2), ///< Interrupt is open-drain (1=open-drain).
-        HAEN = (1u<<3), ///< Hardware address enable (1=enable).
-        DISSLW = (1u<<4), ///< Slew rate control bit for SDA output (1=disable).
-        SEQOP = (1u<<5), ///< Sequential operation mode bit (1=disable).
-        MIRROR = (1u<<6), ///< Mirror interrupt pins (1=internally connected).
-        BANK = (1u<<7), ///< The selected bank.
+        INTPOL = oneBit8(1), ///< The interrupt polarity (1=active-high).
+        ODR = oneBit8(2), ///< Interrupt is open-drain (1=open-drain).
+        HAEN = oneBit8(3), ///< Hardware address enable (1=enable).
+        DISSLW = oneBit8(4), ///< Slew rate control bit for SDA output (1=disable).
+        SEQOP = oneBit8(5), ///< Sequential operation mode bit (1=disable).
+        MIRROR = oneBit8(6), ///< Mirror interrupt pins (1=internally connected).
+        BANK = oneBit8(7), ///< The selected bank.
     };
     LR_DECLARE_FLAGS(Configuration, ConfigurationMask);
 
     /// The pin.
     ///
     enum Pin : uint16_t {
-        GPA0 = (1u<<0), ///< Pin 0 on port A
-        GPA1 = (1u<<1), ///< Pin 1 on port A
-        GPA2 = (1u<<2), ///< Pin 2 on port A
-        GPA3 = (1u<<3), ///< Pin 3 on port A
-        GPA4 = (1u<<4), ///< Pin 4 on port A
-        GPA5 = (1u<<5), ///< Pin 5 on port A
-        GPA6 = (1u<<6), ///< Pin 6 on port A
-        GPA7 = (1u<<7), ///< Pin 7 on port A
-        GPB0 = (1u<<8), ///< Pin 0 on port B
-        GPB1 = (1u<<9), ///< Pin 1 on port B
-        GPB2 = (1u<<10), ///< Pin 2 on port B
-        GPB3 = (1u<<11), ///< Pin 3 on port B
-        GPB4 = (1u<<12), ///< Pin 4 on port B
-        GPB5 = (1u<<13), ///< Pin 5 on port B
-        GPB6 = (1u<<14), ///< Pin 6 on port B
-        GPB7 = (1u<<15),  ///< Pin 7 on port B
+        GPA0 = oneBit16(0), ///< Pin 0 on port A
+        GPA1 = oneBit16(1), ///< Pin 1 on port A
+        GPA2 = oneBit16(2), ///< Pin 2 on port A
+        GPA3 = oneBit16(3), ///< Pin 3 on port A
+        GPA4 = oneBit16(4), ///< Pin 4 on port A
+        GPA5 = oneBit16(5), ///< Pin 5 on port A
+        GPA6 = oneBit16(6), ///< Pin 6 on port A
+        GPA7 = oneBit16(7), ///< Pin 7 on port A
+        GPB0 = oneBit16(8), ///< Pin 0 on port B
+        GPB1 = oneBit16(9), ///< Pin 1 on port B
+        GPB2 = oneBit16(10), ///< Pin 2 on port B
+        GPB3 = oneBit16(11), ///< Pin 3 on port B
+        GPB4 = oneBit16(12), ///< Pin 4 on port B
+        GPB5 = oneBit16(13), ///< Pin 5 on port B
+        GPB6 = oneBit16(14), ///< Pin 6 on port B
+        GPB7 = oneBit16(15),  ///< Pin 7 on port B
         GP_All = 0xffff, ///< All pins on both ports
         GPA_All = 0x00ff, ///< All pins on port A
         GPB_All = 0xff00, ///< All pins on port B.

@@ -63,7 +63,7 @@ MCP23008::Status MCP23008::test(bool testReset)
         GPIO::setMode(_resetPin, GPIO::Mode::Input);
         Timer::delayMilliseconds(1);
         // Check if the line is drawn high using the external pull up.
-        if (GPIO::getState(_resetPin) != true) {
+        if (!GPIO::getState(_resetPin)) {
             return Status::Error;
         }
         GPIO::setMode(_resetPin, _noResetMode);
