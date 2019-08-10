@@ -8,6 +8,5 @@ project(HAL-mcp230xx)
 set(CMAKE_CXX_STANDARD 17)
 
 # Create a static library.
-file(GLOB SRC_FILES "*.cpp")
-add_library(HAL-mcp230xx ${SRC_FILES})
+add_library(HAL-mcp230xx MCP23008.cpp MCP23008.hpp MCP23017.cpp MCP23017.hpp)
 
